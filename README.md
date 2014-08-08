@@ -23,11 +23,9 @@ var searcher = L.CrimemapLeafletSearcher(map);
 
 Constructs crimemap-leaflet-searcher in given map
 
-Optional third argument in each `LatLng` point (`altitude`) represents point intensity.
-
 #### Methods
 
-- **results(maxResults)**: Limits the number of results to given number. Default is 10. ( Nominatim is returning <0,10> results)
+- **results(maxResults)**: Limits the number of results. Default is 10. ( Nominatim is returning <0,10> results)
 
 
 ## Build
