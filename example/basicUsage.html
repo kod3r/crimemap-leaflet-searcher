@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CrimeMap Searcher Example</title>
+
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+
+    <link rel="stylesheet" type="text/css" href="../node_modules/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" type="text/css" href="../dest/crimemap-leaflet-searcher.css">
+
+
+    <script src="../node_modules/d3/d3.js"></script>
+    <script src="../node_modules/leaflet/dist/leaflet-src.js"></script>
+    <script src="../src/crimemap-leaflet-searcher.js"></script>
+
+    <style>
+        html {width:100%; height:100%}
+        body{ margin:0; padding:0; width:100%; height:100%}
+        #map { width: 100%; height: 100%; }
+    </style>
+
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <script>
+
+        var map = L.map('map').setView([48.82109, 18.2193], 8);
+
+        var tiles = L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
+            attribution: 'Data, imagery and map information provided by <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">, <a href="http://www.openstreetmap.org/copyright">OpenStreetMap and contributors</a>, <a href="http://wiki.openstreetmap.org/wiki/Legal_FAQ#3a._I_would_like_to_use_OpenStreetMap_maps._How_should_I_credit_you.3F">ODbL</a>'
+        }).addTo(map);
+
+        var searcher = L.CrimemapLeafletSearcher(map).results(5);
+
+    </script>
+
+</body>
+</html>
