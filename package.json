@@ -1,6 +1,6 @@
 {
   "name": "crimemap-leaflet-searcher",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "src":"src",
   "dest":"dist",
   "description": "Leaflet GeoSearch build up http://nominatim.openstreetmap.org/ and d3.",

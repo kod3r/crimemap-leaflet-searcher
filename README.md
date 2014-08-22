@@ -26,6 +26,8 @@ Constructs crimemap-leaflet-searcher in given map
 #### Methods
 
 - **results(maxResults)**: Limits the number of results. Default is 10. ( Nominatim is returning <0,10> results)
+- **onfinish(callback)**: Callback called after search is finished.
+- **onchoose(callback)**: Callback called after some result is chosen.
 
 
 ## Build
@@ -37,6 +39,14 @@ node_modules/.bin/grunt
 
 
 ## Changelog
+
+#### 0.1.3 Aug 22, 2014
+
+- onchoose added.
+
+#### 0.1.2 Aug 22, 2014
+
+- onfinish added.
 
 #### 0.1.0 Aug 8, 2014
 
