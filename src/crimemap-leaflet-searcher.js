@@ -17,7 +17,7 @@
 */
 L.CrimemapLeafletSearcher = function(map){
 
-    var renderFunction, results = 10;
+    var renderFunction, results = 10, onfinish = function(){};
     var placeChooser,innerBox,searchForm,processing,enterNewSearch,chooseAnother,cancelSearch;
 
     var nameResolver = "http://nominatim.openstreetmap.org/search";
@@ -171,6 +171,7 @@ L.CrimemapLeafletSearcher = function(map){
 
             resetAll();
             cancelSearch.style("display","inline-block");
+            onfinish();
         });
     };
 
@@ -185,6 +186,13 @@ L.CrimemapLeafletSearcher = function(map){
         if (!arguments.length)
             return results;
         results = _;
+        return searcher;
+    };
+
+    searcher.onfinish = function(_) {
+        if (!arguments.length)
+            return onfinish;
+        onfinish = _;
         return searcher;
     };
 

@@ -10,8 +10,8 @@
     
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     
-    <link rel="stylesheet" type="text/css" href="../dist/crimemap-leaflet-searcher.css">
-    <script src="../dist/crimemap-leaflet-searcher.js"></script>
+    <link rel="stylesheet" type="text/css" href="../src/crimemap-leaflet-searcher.css">
+    <script src="../src/crimemap-leaflet-searcher.js"></script>
 
     <style>
         html {width:100%; height:100%}
@@ -32,7 +32,7 @@
             attribution: 'Data, imagery and map information provided by <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">, <a href="http://www.openstreetmap.org/copyright">OpenStreetMap and contributors</a>, <a href="http://wiki.openstreetmap.org/wiki/Legal_FAQ#3a._I_would_like_to_use_OpenStreetMap_maps._How_should_I_credit_you.3F">ODbL</a>'
         }).addTo(map);
 
-        var searcher = L.CrimemapLeafletSearcher(map).results(5);
+        var searcher = L.CrimemapLeafletSearcher(map).results(5).onfinish(function(){alert("meh");});
 
     </script>
 
