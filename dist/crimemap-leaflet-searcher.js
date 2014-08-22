@@ -42,6 +42,7 @@ L.CrimemapLeafletSearcher = function(map){
         enterNewSearch.style("display","inline-block");
         innerBox.selectAll(".place").style("display","none");
         cancelSearch.style("display","none");
+        onchoose();
     }
 
     function chooseAnotherCall(){
@@ -160,7 +161,7 @@ L.CrimemapLeafletSearcher = function(map){
                             .replace(/Western/g,"Západné")
                             .replace(/Central/g,"Stredné")
                             .replace(/District of/g,"Okres");
-                    }).on("click",onchoose);
+                    });
 
                     panMap(data[0]);
 
