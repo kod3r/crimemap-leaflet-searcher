@@ -97,28 +97,31 @@ L.CrimemapLeafletSearcher = function(map){
                                 .style("display","none")
                                 .on("submit",searcher.search);
 
-        searchForm.append("input").attr("type","text").attr("id","searchTerm");
-        searchForm.append("input").attr("type","submit").attr("value","Hľadať").attr("id","searchSubmit");
+        searchForm.append("input").attr("type","text").attr("id","searchTerm").attr("class","control");
+        searchForm.append("input").attr("type","submit").attr("value","Hľadať").attr("id","searchSubmit").attr("class","control");
 
-        processing = searchForm.append("span").attr("id","processing");
+        processing = searchForm.append("div").attr("id","processing").attr("class","control");
 
 
-        enterNewSearch = innerBox.append("span")
+        enterNewSearch = innerBox.append("div")
                             .attr("id","enterNewSearch")
                             .text("Vyhľadať lokalitu")
-                            .on("click",enterNewSearchCall);
+                            .on("click",enterNewSearchCall)
+                            .attr("class","control");
 
-        chooseAnother = innerBox.append("span")
+        chooseAnother = innerBox.append("div")
                             .attr("id","chooseAnother")
                             .style("display","none")
                             .text("Zobraziť vyhľadané")
-                            .on("click",chooseAnotherCall);
+                            .on("click",chooseAnotherCall)
+                            .attr("class","control");
 
-        cancelSearch = innerBox.append("span")
+        cancelSearch = innerBox.append("div")
                             .attr("id","cancelSearch")
                             .style("display","none")
                             .text("Zrušiť")
-                            .on("click",cancelSearchCall);
+                            .on("click",cancelSearchCall)
+                            .attr("class","control");
 
     }
 
@@ -127,10 +130,10 @@ L.CrimemapLeafletSearcher = function(map){
         var terms=this[0].value
                 .trim()
                 .replace(/\s+/g, "+");
-        processing.attr("class","normalinfo").text("Vyhladavam");
+        processing.classed({"errorinfo":false,"normalinfo":true}).text("Vyhladavam");
         d3.json(nameResolver+"?q="+terms+"&format=json&countrycodes=sk").get(function(error,data){
             if(error !== null){
-                processing.attr("class","errorinfo").text("Vyhladavanie zlyhalo");
+                processing.classed({"errorinfo":true,"normalinfo":false}).text("Vyhladavanie zlyhalo");
                 return;
             }
             data = data.slice(0,results);
@@ -139,12 +142,14 @@ L.CrimemapLeafletSearcher = function(map){
 
             binded.exit().remove();
             if(data.length>0){
-                processing.attr("class","").text("");
+                processing.classed({"normalinfo":false,"errorinfo":false}).text("");
                 searchForm.style("display","none");
+
                 var entered = binded.enter()
-                    .append("span")
+                    .append("div")
                     .classed({"place":"true"})
-                    .on("click",onClick);
+                    .on("click",onClick)
+                    .style("width",(80/results-3)+"%");
 
                 var updated = binded
                     .text(function(d){
@@ -160,7 +165,7 @@ L.CrimemapLeafletSearcher = function(map){
                     panMap(data[0]);
 
             }else{
-                processing.attr("class","normalinfo").text("Nenasiel sa ziaden vysledok");
+                processing.classed({"errorinfo":true,"normalinfo":false}).text("Nenasiel sa ziaden vysledok");
 
             }
 
