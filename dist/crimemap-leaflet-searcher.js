@@ -17,7 +17,7 @@
 */
 L.CrimemapLeafletSearcher = function(map){
 
-    var renderFunction, results = 10;
+    var renderFunction, results = 10, onfinish = function(){}, onchoose = function(){};
     var placeChooser,innerBox,searchForm,processing,enterNewSearch,chooseAnother,cancelSearch;
 
     var nameResolver = "http://nominatim.openstreetmap.org/search";
@@ -160,7 +160,7 @@ L.CrimemapLeafletSearcher = function(map){
                             .replace(/Western/g,"Západné")
                             .replace(/Central/g,"Stredné")
                             .replace(/District of/g,"Okres");
-                    });
+                    }).on("click",onchoose);
 
                     panMap(data[0]);
 
@@ -171,6 +171,7 @@ L.CrimemapLeafletSearcher = function(map){
 
             resetAll();
             cancelSearch.style("display","inline-block");
+            onfinish();
         });
     };
 
@@ -185,6 +186,20 @@ L.CrimemapLeafletSearcher = function(map){
         if (!arguments.length)
             return results;
         results = _;
+        return searcher;
+    };
+
+    searcher.onfinish = function(_) {
+        if (!arguments.length)
+            return onfinish;
+        onfinish = _;
+        return searcher;
+    };
+
+    searcher.onchoose = function(_) {
+        if (!arguments.length)
+            return onchoose;
+        onchoose = _;
         return searcher;
     };
 
